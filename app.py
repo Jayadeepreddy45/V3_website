@@ -9,6 +9,8 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 import os
 from dotenv import load_dotenv
+from models import Timesheet, Invoice, Vendor
+
 
 load_dotenv()
 
@@ -207,6 +209,12 @@ def invoice_management():
 def admin_timesheets():
     timesheets = Timesheet.query.all()  # Ensure Timesheet model exists
     return render_template('admin/admin_timesheets.html', timesheets=timesheets)
+@app.route('/admin/invoice_creation')
+def invoice_creation():
+    return render_template('admin/invoice_creation.html')
+@app.route('/admin/vendor_management')
+def vendor_management():
+    return render_template('admin/vendor_management.html')
 
 # --- Run ---
 if __name__ == '__main__':
